@@ -17,6 +17,8 @@ declare namespace Cloudflare {
 		ALLOWED_USER_ID: string;
 		MFA_SECRET: string;
 		JWT_SECRET: string;
+		CF_API_TOKEN: string;
+		CF_ACCOUNT_ID: string;
 	}
 }
 interface Env extends Cloudflare.Env {}
@@ -24,7 +26,7 @@ type StringifyValues<EnvType extends Record<string, unknown>> = {
 	[Binding in keyof EnvType]: EnvType[Binding] extends string ? EnvType[Binding] : string;
 };
 declare namespace NodeJS {
-	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "DEFAULT_AI" | "DEEPSEEK_API_KEY" | "TELEGRAM_BOT_TOKEN" | "WEBHOOK_SECRET" | "ALLOWED_USER_ID" | "MFA_SECRET" | "JWT_SECRET">> {}
+	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "DEFAULT_AI" | "DEEPSEEK_API_KEY" | "TELEGRAM_BOT_TOKEN" | "WEBHOOK_SECRET" | "ALLOWED_USER_ID" | "MFA_SECRET" | "JWT_SECRET" | "CF_API_TOKEN" | "CF_ACCOUNT_ID">> {}
 }
 
 // Begin runtime types

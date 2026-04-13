@@ -50,12 +50,11 @@ dashboardRoute.get('/dashboard', async (c) => {
                         <h2 class="text-5xl font-bold text-white">${balanceStatus}</h2>
                         <p class="text-sm text-slate-400 mt-1">${c.env.DEFAULT_AI === 'deepseek' ? 'Deepseek Cloud' : 'Google Gemini API'}</p>
                     </div>
-                </div>
-                <div class="glass rounded-3xl p-8 flex flex-col justify-between h-48 border-emerald-500/20 shadow-lg shadow-emerald-500/5">
-                    <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Monthly Infrastructure</p>
+                </div>                 <div class="glass rounded-3xl p-8 flex flex-col justify-between h-48 border-emerald-500/20 shadow-lg shadow-emerald-500/5">
+                    <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Verified Charges (MTD)</p>
                     <div class="mt-2">
-                        <h2 class="text-5xl font-bold text-white">$${usage.totalProjectedCost}</h2>
-                        <p class="text-sm text-slate-400 mt-1">Estimated Cloudflare Charges</p>
+                        <h2 class="text-5xl font-bold text-white">\$$${usage.totalProjectedCost}</h2>
+                        <p class="text-sm text-slate-400 mt-1">R2 &amp; D1 · Live API</p>
                     </div>
                 </div>
             </div>
@@ -86,7 +85,7 @@ dashboardRoute.get('/dashboard', async (c) => {
                 <div class="glass rounded-3xl p-8 space-y-8 self-start">
                     <h3 class="text-lg font-bold text-white flex items-center justify-between">
                         Cloudflare Usage
-                        <span class="text-[10px] font-normal text-slate-500 uppercase">Estimates</span>
+                        <span class="text-[10px] font-normal text-emerald-500 uppercase">Live · API</span>
                     </h3>
                     
                     <div class="space-y-6">
@@ -94,22 +93,27 @@ dashboardRoute.get('/dashboard', async (c) => {
                             <div class="space-y-2">
                                 <div class="flex justify-between text-xs">
                                     <span class="text-slate-400 font-medium">${s.name}</span>
-                                    <span class="text-white font-bold">$${s.cost}</span>
+                                    <span class="text-white font-bold">\$$${s.cost}</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
                                     <div class="h-full bg-indigo-500 rounded-full" style="width: ${s.percent || 0}%"></div>
                                 </div>
                                 <div class="flex justify-between text-[10px]">
-                                    <span class="text-slate-500">${s.usage}</span>
+                                    <span class="text-slate-500">${s.note || s.usage}</span>
                                     <span class="text-slate-600">${s.limit || ''}</span>
                                 </div>
                             </div>
                         `).join('')}
                     </div>
 
-                    <div class="mt-8 pt-8 border-t border-white/5">
-                        <p class="text-xs text-slate-500 leading-relaxed italic">
-                            * These are estimations based on Cloudflare's 2026 usage-based pricing. Please visit your Cloudflare Dashboard for real-time billing.
+                    <div class="mt-6 pt-6 border-t border-white/5 space-y-3">
+                        <a href="https://dash.cloudflare.com/?to=/:account/ai/workers-ai" target="_blank" 
+                           class="flex items-center justify-between text-xs text-indigo-400 hover:text-indigo-300 transition-colors group">
+                            <span>⚡ View Workers AI Neuron Usage</span>
+                            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                        <p class="text-[10px] text-slate-600 leading-relaxed">
+                            R2 &amp; D1 pulled live from Cloudflare GraphQL. Fetched: ${usage.fetchedAt}
                         </p>
                     </div>
 
