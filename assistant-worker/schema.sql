@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS documents (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    file_path TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS locks (
+    id TEXT PRIMARY KEY,
+    value TEXT NOT NULL,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS research_history (
+    id TEXT PRIMARY KEY,
+    query TEXT NOT NULL,
+    status TEXT NOT NULL, -- 'RUNNING', 'COMPLETED', 'FAILED'
+    success_count INTEGER DEFAULT 0,
+    fail_count INTEGER DEFAULT 0,
+    total_count INTEGER DEFAULT 0,
+    error_log TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

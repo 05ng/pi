@@ -1,0 +1,9 @@
+# Duplicate this file as .dev.vars and fill in your actual values.
+# Do NOT commit .dev.vars to source control.
+
+DEEPSEEK_API_KEY="your-api-key-here"
+TELEGRAM_BOT_TOKEN="your-bot-token-here"
+WEBHOOK_SECRET="your-secret-here"
+ALLOWED_USER_ID="your-telegrame-id"
+MFA_SECRET="your-mfa-secret"
+JWT_SECRET="your-random-jwt-secret-here"
